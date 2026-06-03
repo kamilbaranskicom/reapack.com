@@ -1,4 +1,4 @@
-github: 'cfillion/reapack'
+repo: 'cfillion/reapack'
 files:
   reaper_reapack-i386.dylib:   darwin_i386
   reaper_reapack-x86_64.dylib: darwin_x86_64

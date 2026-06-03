@@ -30,7 +30,10 @@ script type="application/ld+json"
         'price': '0',
         'priceCurrency': 'CAD',
       },
-      'sameAs': ['https://github.com/cfillion/reapack'],
+      'sameAs': [ \
+        'https://codeberg.org/cfillion/reapack',
+        'https://github.com/cfillion/reapack',
+      ],
     }.to_json
 
 p ReaPack is a package manager for REAPER, the Digital Audio Workstation.
@@ -134,11 +137,11 @@ ul
   li: a href="https://www.realinks.net/links/reapack/" title="ReaPack"
     img.favicon src="https://www.realinks.net/wp-content/uploads/2023/01/logo-realinks-blocky-60x60.png"
     | Article on realinks.net
-  li: a href="https://github.com/cfillion/reapack"
-    i.fa.fa-fw.fa-github
-    | GitHub project
+  li: a href="https://codeberg.org/cfillion/reapack"
+    i.fa.fa-fw.fa-code
+    | Source repository
   li
-    a> href="https://github.com/cfillion/reapack/issues"
-      i.fa.fa-fw.fa-github
+    a> href="https://codeberg.org/cfillion/reapack/issues"
+      i.fa.fa-fw.fa-bug
       | Issue tracker
     | for bug reports and feature ideas

@@ -14,6 +14,11 @@ require 'yaml'
 
 TaskFailure = Class.new RuntimeError
 
+Faraday.default_connection = Faraday.new do |conn|
+  conn.response :json, parser_options: {symbolize_names: true}
+  conn.response :raise_error
+end
+
 class Runner
   def initialize
     @root_dir = File.dirname __FILE__
@@ -96,12 +101,13 @@ class Releases
     data ||= {}
     old_dl_count = data[:recent_downloads] || 0
 
-    releases = Octokit.releases @config['github']
+    releases = Faraday.get("https://codeberg.org/api/v1/repos/#{@config['repo']}/releases?draft=false
+&pre-release=false").body
     raise TaskFailure, 'no releases' if releases.empty?
 
-    latest = releases.find {|r| !r[:prerelease] }
     latest ||= releases.first
-    latest = latest.to_h
+    latest[:created_at]   = Time.iso8601 latest[:created_at]
+    latest[:published_at] = Time.iso8601 latest[:published_at]
 
     data[:recent_downloads] = releases.map {|release|
       release[:assets].map {|file| file[:download_count] }.inject(&:+).to_i
@@ -120,7 +126,7 @@ class Releases
       [data[:latest][:name], dl_count_diff.bold.yellow, data[:recent_downloads]]
 
     [summary, data]
-  rescue Faraday::ConnectionFailed, Octokit::Error => e
+  rescue Faraday::ConnectionFailed, Faraday::ParsingError => e
     raise TaskFailure, e.message
   end
 end

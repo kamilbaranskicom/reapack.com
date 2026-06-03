@@ -233,4 +233,4 @@ forum. Development or technical questions can be asked in the [development
 thread](https://forum.cockos.com/showthread.php?t=169127).
 
 Bug reports and feature requests can be filled in the [issue
-tracker](https://github.com/cfillion/reapack/issues) on GitHub.
+tracker](https://codeberg.org/cfillion/reapack/issues) on Codeberg.

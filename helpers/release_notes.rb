@@ -24,7 +24,7 @@ module ReleaseNotes
     }
 
     release_notes.gsub!(/\[#(\d+)\]/) {
-      yield "GitHub issue \##{$1}", "https://github.com/cfillion/reapack/issues/#{$1}"
+      yield "Issue \##{$1}", "https://codeberg.org/cfillion/reapack/issues/#{$1}"
     }
 
     release_notes
